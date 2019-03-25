@@ -1,0 +1,124 @@
+@import "../assets/styles/variables.less";
+
+.rc-breadcrumb {
+  font-size: @size-13;
+  font-family: iCielPanton_SemiBold;
+  text-transform: uppercase;
+  margin-top: 10px;
+  margin-left: 24px;
+  margin-bottom: 20px;
+  span, a, i {
+    color: @app-color;
+  }
+  .anticon {
+    font-size: @size-14;
+    margin-right: 6px;
+  }
+}
+
+.rc-search {
+  .ant-input-suffix {
+    button {
+      background: none;
+      border: none;
+      i {
+        color: #b9b9b9;
+        font-size: @size-13;
+      }
+    }
+  }
+}
+
+.rc-search-auto-complete {
+  .title {
+    font-size: @size-13;
+  }
+  .input-search {
+    width: 100%;
+  }
+}
+
+.rc-icon-status {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 6px;
+  cursor: pointer;
+}
+
+.rc-input-number {
+  .ant-input-number {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #d9d9d9;
+    border-radius: 0;
+  }
+  .ant-input-number-handler-wrap {
+    border: 1px solid #d9d9d9;
+  }
+}
+
+.rc-icon-status-false {
+  background-color: @muted-color;
+}
+
+.rc-icon-status-true {
+  background-color: #0aec0a;
+}
+
+.rc-gallery {
+  height: 70px;
+  white-space: nowrap;
+  width: 100%;
+  overflow-x: auto;
+  width: 100%;
+  .rc-gallery-scroll-warp {
+    width: 100%;
+    overflow-y: hidden;
+    overflow-x: auto;
+    position: relative;
+    height: 70px;
+    .rc-gallery-scroll-body {
+      position: relative;
+      display: inline-block;
+      height: 70px;
+      .rc-gallery-scroll-content {
+        white-space: nowrap;
+        .rc-gallery-item {
+          display: inline-block;
+          vertical-align: top;
+          .item {
+            position: relative;
+            width: 70px;
+            height: 70px;
+            margin-right: 5px;
+            margin-top: 5px;
+            &:hover {
+              .action {
+                display: block;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .cover {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background-size: 100% 100%;
+  }
+}
+
+.style-check {
+  background: @white;
+  color: @app-color;
+  font-weight: bold;
+  position: absolute;
+  font-size: 9px;
+  padding: 2px;
+  left: 25px;
+  border: 1px solid @white;
+}

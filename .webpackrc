@@ -1,0 +1,19 @@
+{
+  "extraBabelPlugins": [
+    ["import", { "libraryName": "antd", "libraryDirectory": "es", "style": "true" }]
+  ],
+  "entry": "src/index.js",
+  "env": {
+    "development": {
+      "extraBabelPlugins": [
+        "dva-hmr"
+      ]
+    }
+  },
+  "theme": {
+    "primary-color": "#2d6097",
+    "font-size-base": "12px",
+    "menu-collapsed-width": "64px"
+  },
+  "disableCSSModules": true
+}

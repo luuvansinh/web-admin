@@ -1,0 +1,24 @@
+@import "../../../assets/styles/variables.less";
+.app-menu {
+  i {
+    font-size: @size-14;
+    color: @white;
+    @media screen and (max-width: @break-small) {
+      font-size: @size-18;
+      margin-left: 7px;
+    }
+  }
+  span {
+    font-size: @size-13;
+  }
+  a {
+    color: rgba(255, 255, 255, 0.67);
+  }
+  .ant-menu-item-selected, .ant-menu-submenu-selected {
+    background-color: @app-color !important;
+  }
+  .app-menu-divider {
+    margin-top: 48px;
+    // margin-bottom: 0.5rem;
+  }
+}

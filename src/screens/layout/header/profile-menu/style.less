@@ -1,0 +1,44 @@
+@import "../../../../assets/styles/variables.less";
+.profile-menu {
+  border: 1px solid #e9e9e9;
+  .profile-menu-item {
+    position: relative;
+    img {
+      width: 30px;
+      height: 30px;
+      margin-top: 5px;
+      margin-right: 5px;
+      float: left;
+    }
+    .inline-block {
+      p {
+        margin-bottom: -5px;
+        font-family: iCielPanton_SemiBold;
+        text-transform: uppercase;
+      }
+      span {
+        font-family: iCielPanton-RegularItalic;
+        font-size: @size-11;
+      }
+      .merchant-status {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        position: absolute;
+        top: 6px;
+        left: 38px;
+      }
+      .merchant-status {
+        &-active {
+          background: #0aec0a;
+        }
+        &-inactive {
+          background: #9a9a9a;
+        }
+      }
+    }
+    i {
+      margin-right: 0.8rem;
+    }
+  }
+}
