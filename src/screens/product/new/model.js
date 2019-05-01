@@ -1,6 +1,6 @@
 import { routerRedux } from 'dva/router';
 import { getAll } from '../../category/service'
-import { create, getDetail, update, changeStataus } from './service';
+import { create, getDetail, update, changeStataus, uploadCover } from './service';
 import { notification } from '../../../utils';
 
 const initState = {
@@ -48,6 +48,19 @@ export default {
         return notification.error(message)
       }
       notification.success(message)
+    },
+    *uploadCover({ file }, { call, put, select }) {
+      const { product } = yield select(_ => _.newProduct)
+      const response = yield call(uploadCover, product._id, file)
+      const { success, message } = response.data
+      if (!success) {
+        return notification.error(message)
+      }
+      notification.success(message)
+      yield put({
+        type: 'fetchProduct',
+        productId: product._id,
+      })
     },
   },
   reducers: {

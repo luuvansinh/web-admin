@@ -1,7 +1,7 @@
 {
   "private": true,
   "scripts": {
-    "start": "PORT=4200 roadhog server",
+    "start": "PORT=4201 roadhog server",
     "build": "roadhog build",
     "lint": "eslint --ext .js src",
     "precommit-msg": "echo 'Pre-commit checks ...' && exit 0",

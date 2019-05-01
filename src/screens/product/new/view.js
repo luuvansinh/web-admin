@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react'
-import { Form, Input, Layout, Row, Col, Button, Select, Checkbox } from 'antd'
+import { Form, Input, Layout, Row, Col, Button, Select, Checkbox, Upload, Icon } from 'antd'
 import { connect } from 'dva';
 import { ComponentConst, MessageConst } from '../../../configs';
 import { RcBreadcrumb } from '../../../components';
@@ -44,6 +44,18 @@ export class NewProduct extends PureComponent {
     })
   }
 
+  /**
+   * Handle upload file
+   */
+  uploadCover = (file) => {
+    const { dispatch } = this.props
+    dispatch({
+      type: 'newProduct/uploadCover',
+      file,
+    })
+    return false
+  }
+
 
   render() {
     const { form: { getFieldDecorator }, newProduct: { categories, product, isUpdating } } = this.props
@@ -58,6 +70,15 @@ export class NewProduct extends PureComponent {
         url: '/products',
         name: product.name,
       })
+    }
+    let fileList = []
+    if (isUpdating) {
+      fileList = product.covers.map((item, index) => ({
+        uid: index,
+        name: item,
+        status: 'done',
+        url: item,
+      }))
     }
     return (
       <Layout className="container">
@@ -168,6 +189,27 @@ export class NewProduct extends PureComponent {
                     ))
                   }
                 </Form.Item>
+                {
+                  isUpdating && (
+                    <Form.Item
+                      {...formItem}
+                      label="&nbsp;"
+                      colon={false}
+                    >
+                      <Upload
+                        listType="picture-card"
+                        fileList={fileList}
+                        beforeUpload={this.uploadCover}
+                        showUploadList={{ showRemoveIcon: false }}
+                      >
+                        <div>
+                          <Icon type="plus" />
+                          <div className="ant-upload-text">{MessageConst.upload}</div>
+                        </div>
+                      </Upload>
+                    </Form.Item>
+                  )
+                }
                 <Form.Item>
                   <div className="step-action-button">
                     <Button type="primary" onClick={this.submit}>{isUpdating ? MessageConst.update : MessageConst.create}</Button>

@@ -13,6 +13,11 @@ const Menus = [{
   name: 'Người dùng',
   icon: 'user',
   route: '/users',
+}, {
+  id: 'promotions',
+  name: 'Khuyến mãi',
+  icon: 'gift',
+  route: '/promotions',
 }]
 
 /**

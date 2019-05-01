@@ -12,7 +12,7 @@ export default {
   // Other
   defaultPhoto: require('../assets/images/default-photo.jpg'),
   loginHeader: require('../assets/images/img-zody-login.png'),
-  logoZody: require('../assets/images/logo-zody.png'),
+  logo: require('../assets/images/logo.jpg'),
   upOrDown: require('../assets/images/up-down.png'),
   excel: require('../assets/images/Excel-Icon.png'),
   word: require('../assets/images/word-icon.png'),
@@ -21,4 +21,5 @@ export default {
   rar: require('../assets/images/rar-icon.png'),
   defaultFile: require('../assets/images/default-file.png'),
   attachment: require('../assets/images/attachment.png'),
+  defaultAvatar: require('../assets/images/default-avatar.jpg'),
 }

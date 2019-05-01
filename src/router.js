@@ -9,10 +9,14 @@ import { i18n } from './configs/locale'
 // Load views
 import { LayoutView } from './screens/layout'
 import { LoginView, LoginModel } from './screens/login'
+import { HomeView, HomeModel } from './public/home'
+import { PProductModel, PProductView } from './public/product'
+
 import { UserModel, UserView } from './screens/user/list'
 import { ProductModel, ProductView } from './screens/product/list'
 import { NewProductModel, NewProductView } from './screens/product/new'
 import { CategoryView, CategoryModel } from './screens/category'
+import { PromotionListModel, PromotionListView } from './screens/promotion/list'
 
 
 const { ConnectedRouter } = routerRedux
@@ -23,9 +27,17 @@ function Routers({ history, app }) {
     component: () => import('./screens/error'),
   })
   const unauthenticatedRoutes = [{
+    path: '/',
+    models: () => [HomeModel],
+    component: () => HomeView,
+  }, {
     path: '/login',
     models: () => [LoginModel],
     component: () => LoginView,
+  }, {
+    path: '/products',
+    models: () => [PProductModel],
+    component: () => PProductView,
   }]
   // Routes
   const routes = [{
@@ -48,6 +60,10 @@ function Routers({ history, app }) {
     path: '/categories',
     models: () => [CategoryModel],
     component: () => CategoryView,
+  }, {
+    path: '/promotions',
+    models: () => [PromotionListModel],
+    component: () => PromotionListView,
   }]
   const role = localStorage.getItem(AppConst.localStorage.roleKey)
   const unauthenticatedComponents = (

@@ -25,7 +25,7 @@ class RcTable extends React.PureComponent {
     /* eslint-disable-next-line */
     const {
       pagination, data, isLoading, onChange, columns, classNames, rowKey, rowClassName, layoutClassNames,
-      expandedRowRender, bordered = false, scroll = {}, size, rowSelection, onRow,
+      bordered = false, scroll = {}, size, rowSelection, onRow,
     } = this.props
     const tableProps = { scroll }
     return (
@@ -41,7 +41,6 @@ class RcTable extends React.PureComponent {
           pagination={pagination}
           onChange={onChange}
           loading={isLoading}
-          expandedRowRender={expandedRowRender}
           size={size}
           rowSelection={rowSelection}
           onRow={onRow}

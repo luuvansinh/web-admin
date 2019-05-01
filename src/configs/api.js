@@ -12,10 +12,27 @@ export default {
 
   methods: METHODS,
 
+  public: {
+    products: {
+      all: () => ({
+        url: '/products',
+        method: METHODS.get,
+      }),
+    },
+  },
+
   // COMMON
   common: {
     login: () => ({
       url: '/login-web-with-phone-number',
+      method: METHODS.post,
+    }),
+    publicLogin: () => ({
+      url: '/login',
+      method: METHODS.post,
+    }),
+    register: () => ({
+      url: '/register',
       method: METHODS.post,
     }),
   },
@@ -64,6 +81,17 @@ export default {
       url: `/admin/categories/${_id}/change-status`,
       method: METHODS.patch,
     }),
+    getForPublic: () => ({
+      url: '/categories',
+      method: METHODS.get,
+    }),
+  },
+
+  cart: {
+    all: () => ({
+      url: '/cart',
+      method: METHODS.get,
+    }),
   },
 
   // USER
@@ -79,6 +107,14 @@ export default {
   me: {
     userInfo: () => ({
       url: '/me',
+      method: METHODS.get,
+    }),
+  },
+
+  // promotion
+  promotion: {
+    all: () => ({
+      url: '/promotions',
       method: METHODS.get,
     }),
   },

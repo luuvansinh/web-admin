@@ -1,9 +1,10 @@
 import queryString from 'query-string'
 import { routerRedux } from 'dva/router'
 import { AppConst, RoleConst, ComponentConst, MessageConst } from '../../configs'
-import { getUserInfo } from './service'
+import { getUserInfo, getCategories, getCart, login } from './service'
 import { helper, notification } from '../../utils'
 
+const { authKey, roleKey } = AppConst.localStorage
 
 export default {
   namespace: 'app',
@@ -13,6 +14,10 @@ export default {
     isLoggedIn: false,
     locationPathname: '',
     locationQuery: {},
+    categories: [],
+    cart: [],
+    hasPublicUser: false,
+    pUser: {},
   },
 
   subscriptions: {
@@ -35,18 +40,18 @@ export default {
   },
 
   effects: {
-    *init({}, { put, call, select }) {
+    *init({ }, { put, call, select }) {
       // Get token saved in storage
       const token = localStorage.getItem(AppConst.localStorage.authKey)
       const role = localStorage.getItem(AppConst.localStorage.roleKey)
+      const { locationPathname } = yield select(_ => _.app)
 
       // if have no token, redirect to login page
       if (!token || !role || role === 'undefined') {
         localStorage.removeItem(AppConst.localStorage.authKey)
         localStorage.removeItem(AppConst.localStorage.roleKey)
-        return yield put(routerRedux.push('/login'))
+        return yield put(routerRedux.push(locationPathname))
       }
-      const { locationPathname } = yield select(_ => _.app)
       // Get user info
       const response = yield call(getUserInfo)
       const { data } = response.data
@@ -69,12 +74,7 @@ export default {
       // Push to page based to role
       if (!helper.checkPathPermission(RoleConst[userRole].pages, locationPathname)) {
         yield put(routerRedux.push(RoleConst[userRole].pages[0].id))
-        // yield put(routerRedux.push('/users'))
       }
-      // const isNewUser = localStorage.getItem(AppConst.localStorage.isNewUser)
-      // if (isNewUser === 'true') {
-      //   yield put(routerRedux.push('/profile'))
-      // }
     },
 
     * logout(data, { put }) {
@@ -91,6 +91,39 @@ export default {
 
       // Redirect to login page
       window.location.href = '/login'
+    },
+    *getCategories({ }, { call, put }) {
+      const response = yield call(getCategories)
+      const { categories } = response.data.data
+      yield put({
+        type: 'updateState',
+        payload: { categories },
+      })
+    },
+    *getCart({ }, { call, put }) {
+      const response = yield call(getCart)
+      const { list } = response.data.data
+      yield put({
+        type: 'updateState',
+        cart: list,
+      })
+    },
+    *userLogin({ payload }, { call, put }) {
+      const response = yield call(login, payload)
+      const { success, message, data: { token, user } } = response.data
+      if (!success) {
+        return notification.error(message)
+      }
+      localStorage.setItem(authKey, token)
+      localStorage.setItem(roleKey, user.role)
+
+      yield put({
+        type: 'updateState',
+        payload: {
+          hasPublicUser: true,
+          pUser: user,
+        },
+      })
     },
   },
 

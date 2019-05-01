@@ -1,6 +1,6 @@
 import { key } from './locale'
 
-const LocalStoragePrefix = (process.env.NODE_ENV === 'production') ? 'admin-' : 'admin-dev-'
+const LocalStoragePrefix = (process.env.NODE_ENV === 'production') ? 'admin-ecommerce-' : 'admin-dev-ecommerce-'
 
 export default {
   name: 'Shop Admin',
@@ -21,6 +21,7 @@ export default {
   localStorage: {
     authKey: `${LocalStoragePrefix}token`,
     roleKey: `${LocalStoragePrefix}role`,
+    pAuthKey: 'user-token',
   },
 
   // Notification level

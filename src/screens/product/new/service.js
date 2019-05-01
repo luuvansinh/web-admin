@@ -31,9 +31,18 @@ const changeStataus = (_id) => {
   })
 }
 
+const uploadCover = (_id, file) => {
+  const api = ApiConst.product.covers(_id)
+  return request.call(api.url, {
+    method: api.method,
+    file,
+  })
+}
+
 export {
   create,
   update,
   getDetail,
   changeStataus,
+  uploadCover,
 }
