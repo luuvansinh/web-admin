@@ -1,5 +1,5 @@
 import React from 'react'
-import { Avatar, Button, Checkbox } from 'antd'
+import { Avatar, Button, Checkbox, Tag } from 'antd'
 import { routerRedux } from 'dva/router';
 
 export default (context) => {
@@ -35,6 +35,14 @@ export default (context) => {
     title: 'Số lượng',
     align: 'center',
     dataIndex: 'quantity',
+  }, {
+    title: 'Danh mục',
+    dataIndex: 'categories',
+    render: categories => (
+      categories.map(item => (
+        <Tag key={item._id}>{item.name}</Tag>
+      ))
+    ),
   }, {
     title: 'Active',
     align: 'center',
