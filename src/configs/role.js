@@ -29,6 +29,14 @@ const LIST_ROUTES = [
     id: 'promotions',
     value: new RegExp('/promotions/.+$', 'i'),
   },
+  {
+    id: 'orders',
+    value: new RegExp('/orders/.+$', 'i'),
+  },
+  {
+    id: 'orders',
+    value: new RegExp('/orders$', 'i'),
+  },
 ]
 
 /**

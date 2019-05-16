@@ -118,4 +118,15 @@ export default {
       method: METHODS.get,
     }),
   },
+
+  order: {
+    all: () => ({
+      url: '/admin/orders',
+      method: METHODS.get,
+    }),
+    changeStatus: _id => ({
+      url: `/admin/orders/${_id}/change-status`,
+      method: METHODS.patch,
+    }),
+  },
 }

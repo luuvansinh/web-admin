@@ -35,4 +35,7 @@ export default {
   dontHaveAccount: 'Bạn chưa có tài khoản',
   upload: 'Tải lên',
   promotions: 'Khuyến mãi',
+  date: 'Ngày',
+  orders: 'Đơn hàng',
+  payment: 'Thanh toán',
 }

@@ -14,6 +14,11 @@ const Menus = [{
   icon: 'user',
   route: '/users',
 }, {
+  id: 'orders',
+  name: 'Đơn hàng',
+  icon: 'shopping-cart',
+  route: '/promotions',
+}, {
   id: 'promotions',
   name: 'Khuyến mãi',
   icon: 'gift',
