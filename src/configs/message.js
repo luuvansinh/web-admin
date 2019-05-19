@@ -38,4 +38,6 @@ export default {
   date: 'Ngày',
   orders: 'Đơn hàng',
   payment: 'Thanh toán',
+  users: 'Người dùng',
+  search: 'Tìm kiếm',
 }

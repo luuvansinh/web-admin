@@ -4,19 +4,20 @@ import { Layout, Row, Col } from 'antd'
 import { connect } from 'dva'
 import { translate } from 'react-i18next'
 import { key } from '../../../configs/locale'
-import { RcBreadcrumb } from '../../../components'
+import { RcBreadcrumb, RcSearch } from '../../../components'
 import { helper } from '../../../utils'
+import { MessageConst } from '../../../configs';
+import { TableView } from './table'
 
-// import { TableView } from './table'
 
 export class ListView extends React.Component {
-  // componentDidMount() {
-  //   this.onFilterChange({})
-  // }
+  componentDidMount() {
+    this.onFilterChange({})
+  }
 
   // Change Filter
   onFilterChange = (newFilter = {}) => {
-    const { userList: { filter } } = this.props
+    const { users: { filter } } = this.props
     const filters = helper.mergeObjects(filter, newFilter)
     const query = lodash.pick(filters, ['page', 'keyword', 'city', 'sort', 'isLocalExpert'])
     this.fetch(query)
@@ -33,7 +34,7 @@ export class ListView extends React.Component {
   // change local expert
   changeLocalExpert = (_id) => {
     this.props.dispatch({
-      type: 'userList/changeLocalExpert',
+      type: 'users/changeLocalExpert',
       payload: {
         _id,
       },
@@ -43,7 +44,7 @@ export class ListView extends React.Component {
   // fetch data user
   fetch = (filter) => {
     this.props.dispatch({
-      type: 'userList/fetch',
+      type: 'users/fetch',
       payload: {
         ...filter,
       },
@@ -51,7 +52,7 @@ export class ListView extends React.Component {
   }
 
   render() {
-    // const { users } = this.props
+    const { users: { users, filter }, loading, dispatch } = this.props
     return (
       <Layout className="container">
         <RcBreadcrumb name="Người dùng" />
@@ -59,19 +60,17 @@ export class ListView extends React.Component {
           <Row gutter={8}>
             <Col xs={24} sm={24} md={24} lg={4} xl={4} span={4}>
               <Row className="filter-box">
-                {/* <RcSearch
-                  title={t(key.search)}
+                <RcSearch
+                  title={MessageConst.users}
                   className="search-user"
-                  placeholder={t(key.placeholderSearchUser)}
+                  placeholder={MessageConst.search}
                   value={filter.keyword}
                   onSearch={keyword => this.onFilterChange({ keyword })}
-                /> */}
-                abc
+                />
               </Row>
             </Col>
             <Col xs={24} sm={24} md={24} lg={20} xl={20} span={20}>
-              {/* <TableView
-                translate={t}
+              <TableView
                 pageSize={filter.limit}
                 total={filter.total}
                 current={filter.page}
@@ -79,8 +78,8 @@ export class ListView extends React.Component {
                 onChange={this.onTablePageChange}
                 changeLocalExpert={this.changeLocalExpert}
                 isLoading={loading.effects['users/fetch']}
-              /> */}
-              abc
+                dispatch={dispatch}
+              />
             </Col>
           </Row>
         </Layout>
@@ -89,8 +88,8 @@ export class ListView extends React.Component {
   }
 }
 
-export default connect(({ app, userList, loading }) => ({
+export default connect(({ app, users, loading }) => ({
   app,
-  userList,
+  users,
   loading,
 }))(translate([key.translations, key.users])(ListView))

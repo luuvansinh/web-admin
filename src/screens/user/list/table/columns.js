@@ -1,14 +1,14 @@
 import React from 'react'
-import { Avatar, Tag } from 'antd'
-import { key } from '../../../../configs/locale'
+import { Avatar, Checkbox } from 'antd'
 import { format } from '../../../../utils'
 
-import RcPopoverStatistic from './popover-statistic'
-
-// const { confirm } = Modal
 
 export default (context) => {
-  const { translate, changeLocalExpert } = context.props
+  const { dispatch } = context.props
+  const changeStatus = userId => dispatch({
+    type: 'users/changeStatus',
+    userId,
+  })
   return [{
     title: '#',
     className: 'hidden-break-small',
@@ -23,7 +23,7 @@ export default (context) => {
       return (<Avatar src={value} shape="square" />)
     },
   }, {
-    title: translate(key.titlePhone),
+    title: 'Phone',
     dataIndex: 'phone',
     render: (value) => {
       return format.phone(value)
@@ -35,14 +35,10 @@ export default (context) => {
       return !value ? '-' : value
     },
   }, {
-    title: translate(key.titleCity),
-    dataIndex: 'city',
-    render: (value) => {
-      return <Tag color="geekblue">{format.city(value)}</Tag>
-    },
-  }, {
-    render: (value, row) => {
-      return (<RcPopoverStatistic translate={translate} data={row} changeLocalExpert={changeLocalExpert} />)
-    },
+    title: 'Active',
+    dataIndex: 'active',
+    render: (value, row) => (
+      <Checkbox defaultChecked={value} checked={value} onChange={() => changeStatus(row._id)} />
+    ),
   }]
 }

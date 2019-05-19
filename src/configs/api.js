@@ -98,10 +98,14 @@ export default {
   user: {
     all: () => {
       return {
-        url: '/users',
+        url: '/admin/users',
         method: METHODS.get,
       }
     },
+    changeStatus: _id => ({
+      url: `/admin/users/${_id}/change-status`,
+      method: METHODS.patch,
+    }),
   },
 
   me: {
