@@ -23,6 +23,9 @@ export default (context) => {
       return (<Avatar src={value} shape="square" />)
     },
   }, {
+    title: 'Name',
+    dataIndex: 'name',
+  }, {
     title: 'Phone',
     dataIndex: 'phone',
     render: (value) => {
@@ -35,8 +38,17 @@ export default (context) => {
       return !value ? '-' : value
     },
   }, {
+    title: 'Đã chi tiêu',
+    dataIndex: 'statistic.expense',
+    render: value => format.number(value),
+  }, {
+    title: 'Số đơn hàng',
+    dataIndex: 'statistic.bill',
+    render: value => format.number(value),
+  }, {
     title: 'Active',
     dataIndex: 'active',
+    align: 'center',
     render: (value, row) => (
       <Checkbox defaultChecked={value} checked={value} onChange={() => changeStatus(row._id)} />
     ),
