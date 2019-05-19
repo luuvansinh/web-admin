@@ -16,6 +16,7 @@ import { NewProductModel, NewProductView } from './screens/product/new'
 import { CategoryView, CategoryModel } from './screens/category'
 import { PromotionListModel, PromotionListView } from './screens/promotion/list'
 import { OrderModel, OrderView } from './screens/order/list'
+import { OrderChartModel, OrderChartView } from './screens/chart/order'
 
 
 const { ConnectedRouter } = routerRedux
@@ -59,6 +60,10 @@ function Routers({ history, app }) {
     path: '/orders',
     models: () => [OrderModel],
     component: () => OrderView,
+  }, {
+    path: '/order-chart',
+    models: () => [OrderChartModel],
+    component: () => OrderChartView,
   }]
   const role = localStorage.getItem(AppConst.localStorage.roleKey)
   const unauthenticatedComponents = (

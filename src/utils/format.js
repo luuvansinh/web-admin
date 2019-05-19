@@ -140,6 +140,20 @@ const dateWithNoHour = (value) => {
     .format(AppConst.format.dateWithNoHour)
 }
 
+/**
+ * Format date with day and month
+ *
+ * @param {String} value
+ */
+const dateWithDayMonthOnly = (value) => {
+  if (!value) {
+    return ''
+  }
+
+  return moment(value)
+    .format(AppConst.format.dateWithDayMonthOnly)
+}
+
 export default {
   nonAccentVietnamese,
   date,
@@ -151,5 +165,6 @@ export default {
   processContentData,
   inboxContent,
   dateWithNoHour,
+  dateWithDayMonthOnly,
 }
 

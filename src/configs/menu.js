@@ -23,6 +23,11 @@ const Menus = [{
   name: 'Khuyến mãi',
   icon: 'gift',
   route: '/promotions',
+}, {
+  id: 'order-chart',
+  name: 'Thống kê',
+  icon: 'area-chart',
+  route: '/order-chart',
 }]
 
 /**

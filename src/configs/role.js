@@ -37,6 +37,10 @@ const LIST_ROUTES = [
     id: 'orders',
     value: new RegExp('/orders$', 'i'),
   },
+  {
+    id: 'order-chart',
+    value: new RegExp('/order-chart$', 'i'),
+  },
 ]
 
 /**

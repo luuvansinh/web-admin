@@ -128,5 +128,9 @@ export default {
       url: `/admin/orders/${_id}/change-status`,
       method: METHODS.patch,
     }),
+    chart: () => ({
+      url: '/admin/orders/chart',
+      method: METHODS.get,
+    }),
   },
 }
