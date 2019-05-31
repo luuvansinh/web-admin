@@ -1,6 +1,6 @@
 import { routerRedux } from 'dva/router';
 import { getAll } from '../../category/service'
-import { create, getDetail, update, changeStataus, uploadCover } from './service';
+import { create, getDetail, update, changeStataus, uploadCover, removeCover } from './service';
 import { notification } from '../../../utils';
 
 const initState = {
@@ -60,6 +60,20 @@ export default {
       yield put({
         type: 'fetchProduct',
         productId: product._id,
+      })
+    },
+    *removeCover({ cover }, { call, put, select }) {
+      const { product } = yield select(_ => _.newProduct)
+      const response = yield call(removeCover, product._id, cover)
+      const { success, message, data } = response.data
+      if (!success) {
+        return notification.error(message)
+      }
+      notification.success(message)
+
+      yield put({
+        type: 'updateState',
+        payload: { product: data.product },
       })
     },
   },

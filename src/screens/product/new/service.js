@@ -39,10 +39,19 @@ const uploadCover = (_id, file) => {
   })
 }
 
+const removeCover = (_id, cover) => {
+  const api = ApiConst.product.removeCover(_id)
+  return request.call(api.url, {
+    method: api.method,
+    body: { cover },
+  })
+}
+
 export {
   create,
   update,
   getDetail,
   changeStataus,
   uploadCover,
+  removeCover,
 }

@@ -27,6 +27,15 @@ export class NewProduct extends PureComponent {
     })
   }
 
+  removeCover = ({ name }) => {
+    const arr = name.split('/')
+    name = arr[arr.length - 1]
+    this.props.dispatch({
+      type: 'newProduct/removeCover',
+      cover: name,
+    })
+  }
+
   /**
    * Submit form
    */
@@ -200,7 +209,8 @@ export class NewProduct extends PureComponent {
                         listType="picture-card"
                         fileList={fileList}
                         beforeUpload={this.uploadCover}
-                        showUploadList={{ showRemoveIcon: false }}
+                        // showUploadList={{ showRemoveIcon: false }}
+                        onRemove={this.removeCover}
                       >
                         <div>
                           <Icon type="plus" />

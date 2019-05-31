@@ -62,6 +62,10 @@ export default {
       url: `/admin/products/${_id}/covers`,
       method: METHODS.patch,
     }),
+    removeCover: _id => ({
+      url: `/admin/products/${_id}/covers`,
+      method: METHODS.delete,
+    }),
   },
 
   categoy: {
@@ -118,7 +122,7 @@ export default {
   // promotion
   promotion: {
     all: () => ({
-      url: '/promotions',
+      url: '/admin/promotions',
       method: METHODS.get,
     }),
   },
